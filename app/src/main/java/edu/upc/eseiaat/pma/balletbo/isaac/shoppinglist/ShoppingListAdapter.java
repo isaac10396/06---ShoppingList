@@ -17,7 +17,7 @@ import java.util.zip.Inflater;
  * Created by Usuario on 23/10/2017.
  */
 
-public class ShoppingListAdapter extends ArrayAdapter<String> {
+public class ShoppingListAdapter extends ArrayAdapter<Shoppingitem> {
     public ShoppingListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List objects) {
         super(context, resource, objects);
     }
@@ -36,11 +36,13 @@ public class ShoppingListAdapter extends ArrayAdapter<String> {
         }
 
         //Se saca el elemento del Checkbox
-        CheckBox shopping_item = (CheckBox) result.findViewById(R.id.shopping_item);
+        CheckBox checkbox = (CheckBox) result.findViewById(R.id.shopping_item);
         //Se saca el ítem de los datos
-        String item_text = getItem(position);
+        Shoppingitem item = getItem(position);
         //Se coge el Checkbox y se le pone como texto el item_text
-        shopping_item.setText(item_text);
+        checkbox.setText(item.getText());
+        //Para saber si el CheckBox esta marcado
+        checkbox.setChecked(item.isChecked());
         return result;
 
     }

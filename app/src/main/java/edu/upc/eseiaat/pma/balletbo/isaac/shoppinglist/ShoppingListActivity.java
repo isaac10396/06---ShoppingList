@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class ShoppingListActivity extends AppCompatActivity {
 
-    private ArrayList<String> itemList;
+    private ArrayList<Shoppingitem> itemList;
     private ShoppingListAdapter adapter;
 
     private ListView list;
@@ -36,10 +36,10 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         //Creem una llista d'Array
         itemList = new ArrayList<>();
-        itemList.add("Patatas");
-        itemList.add("Papel WC");
-        itemList.add("Zanahorias");
-        itemList.add("Copas Danone");
+        itemList.add(new Shoppingitem("Patatas"));
+        itemList.add(new Shoppingitem("Papel WC"));
+        itemList.add(new Shoppingitem("Zanahorias"));
+        itemList.add(new Shoppingitem("Copas Danone"));
 
         //Creem l'adaptador del ArrayList (que coneix AndroidStudio)
         adapter = new ShoppingListAdapter(
@@ -67,6 +67,18 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         list.setAdapter(adapter);
 
+        //Per enterarnos quan han clickat un element
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                //Amb aquest mètode, si l'element està marcat,
+                //es desmarcarà i si no ho estava, es marcarà
+                itemList.get(pos).toggleChecked();
+                //Quan es fa un canvi en l'adaptador, aquest s'avisa perque s'actualitzi
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         //Metode per quan apreten el boto durant un rato
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -83,7 +95,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         builder.setTitle(R.string.confirm);
         String fmt = getResources().getString(R.string.confirm_message);
         //Missatge del quadre de dialeg i el ítem que es vol eliminar
-        builder.setMessage(String.format(fmt, itemList.get(pos)));
+        builder.setMessage(String.format(fmt, itemList.get(pos).getText()));
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -105,10 +117,12 @@ public class ShoppingListActivity extends AppCompatActivity {
         //Si el text no esta en blanc
         if(!item_text.isEmpty()) {
             //Afegim a la llista el text agafat
-            itemList.add(item_text);
+            itemList.add(new Shoppingitem(item_text));
             //Quan es fa un canvi en el llista d'Array, s'avisa a l'adaptador
             adapter.notifyDataSetChanged();
             edit_item.setText("");
+            //La lista se mueva sola hasta el elemento que acabo de poner para que yo lo pueda ver
+            list.smoothScrollToPosition(itemList.size()-1);
         }
     }
 }
