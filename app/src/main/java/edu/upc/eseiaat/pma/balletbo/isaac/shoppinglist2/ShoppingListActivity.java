@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist;
+package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist2;
 
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ShoppingListActivity extends AppCompatActivity {

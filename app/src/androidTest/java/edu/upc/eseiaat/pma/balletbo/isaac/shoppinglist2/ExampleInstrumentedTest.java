@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist;
+package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist2;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

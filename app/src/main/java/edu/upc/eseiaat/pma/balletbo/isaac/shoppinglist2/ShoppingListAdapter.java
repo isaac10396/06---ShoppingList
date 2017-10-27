@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist;
+package edu.upc.eseiaat.pma.balletbo.isaac.shoppinglist2;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by Usuario on 23/10/2017.
